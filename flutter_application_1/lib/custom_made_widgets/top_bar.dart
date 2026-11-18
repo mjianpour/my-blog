@@ -112,7 +112,7 @@ class TopBarContainer extends StatelessWidget {
                   children: [
                     const Icon(Icons.email),
                     SizedBox(width: SizeManager.small),
-                    if (!isCompact) const Text("Contact"),
+                    if (!isCompact) const Text("Contact Me"),
                   ],
                 ),
               ],
