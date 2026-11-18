@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/buttons/extended_dark_switch.dart';
-import 'package:flutter_application_1/src/buttons/language_switcher.dart';
-import 'package:flutter_application_1/src/custom_made_widgets/top_bar.dart';
+import 'package:flutter_application_1/buttons/extended_dark_switch.dart';
+import 'package:flutter_application_1/buttons/language_switcher.dart';
+import 'package:flutter_application_1/custom_made_widgets/top_bar.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_application_1/providers/theme_provider.dart';
 
 void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(isDarkMode);
     return LayoutBuilder(
       builder: (context, constraints) {
         return MaterialApp(
+          theme: isDark
+              ? ThemeData(scaffoldBackgroundColor: Colors.black)
+              : ThemeData(scaffoldBackgroundColor: Colors.white),
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.only(
