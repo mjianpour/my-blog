@@ -3,6 +3,7 @@ import 'package:flutter_application_1/buttons/extended_dark_switch.dart';
 import 'package:flutter_application_1/buttons/language_switcher.dart';
 import 'package:flutter_application_1/custom_made_widgets/top_bar.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
+import 'package:flutter_application_1/website_pages/resume.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_application_1/providers/theme_provider.dart';
 
@@ -27,46 +28,61 @@ class MainApp extends ConsumerWidget {
               padding: const EdgeInsets.only(
                 top: SizeManager.globalVerticalPadding,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: SizeManager.medium,
-                    ),
-                    child: TopBar(),
-                  ),
-                  Expanded(child: Container(height: double.infinity)),
-
-                  constraints.maxWidth < SizeManager.smallScreenWidth
-                      ? Row(
-                          children: [
-                            Expanded(child: Container(width: double.infinity)),
-                            LanguageSwitcher(
-                              languageSwitcherWidth: SizeManager.topBarHeight,
-                            ),
-                            SizedBox(width: SizeManager.small),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: SizeManager.globalVerticalPadding,
-                                right: SizeManager.globalVerticalPadding,
-                                bottom: SizeManager.globalVerticalPadding,
-                              ),
-                              child: DarkModeSwitch(),
-                            ),
-                          ],
-                        )
-                      : Row(
-                          children: [
-                            Expanded(child: Container(width: double.infinity)),
-                            Padding(
-                              padding: const EdgeInsets.all(
-                                SizeManager.globalVerticalPadding * 1.5,
-                              ),
-                              child: const DarkModeSwitch(),
-                            ),
-                          ],
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: SizeManager.medium,
                         ),
+                        child: TopBar(),
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(child: ResumePage()),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Expanded(child: Container(height: double.infinity)),
+                      constraints.maxWidth < SizeManager.smallScreenWidth
+                          ? Row(
+                              children: [
+                                Expanded(
+                                  child: Container(width: double.infinity),
+                                ),
+                                LanguageSwitcher(
+                                  languageSwitcherWidth:
+                                      SizeManager.topBarHeight,
+                                ),
+                                SizedBox(width: SizeManager.small),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: SizeManager.globalVerticalPadding,
+                                    right: SizeManager.globalVerticalPadding,
+                                    bottom: SizeManager.globalVerticalPadding,
+                                  ),
+                                  child: DarkModeSwitch(),
+                                ),
+                              ],
+                            )
+                          : Row(
+                              children: [
+                                Expanded(
+                                  child: Container(width: double.infinity),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(
+                                    SizeManager.globalVerticalPadding * 1.5,
+                                  ),
+                                  child: const DarkModeSwitch(),
+                                ),
+                              ],
+                            ),
+                    ],
+                  ),
                 ],
               ),
             ),
