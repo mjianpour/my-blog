@@ -1,7 +1,11 @@
+import 'package:flutter_application_1/articles_and_windows/tech_stack.dart';
+
 final List<Map> myResumeArticle = [
   {"path": "assets/image_profile.png", "type": "Image-Profile"},
   {"text": "Mohammad Javad Zhianpour", "type": "Hero"},
   {"text": "Physics Student \n& Software Developer", "type": "Hero-Desc"},
+  {"type": "map-list", "stack": techStack},
+  {"text": "About Me", "type": "Header"},
   {
     "text": "A 22 year old Physics student at Ferdowsi University of Mashhad.",
     "type": "Desc",

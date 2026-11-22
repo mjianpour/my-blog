@@ -4,6 +4,7 @@ import 'package:flutter_application_1/providers/theme_provider.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
 import 'package:flutter_application_1/src/style_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ArticleViewer extends ConsumerWidget {
   const ArticleViewer({super.key});
@@ -40,7 +41,7 @@ class Component {
         );
       case "Hero-Desc":
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: SizeManager.large * 3),
+          padding: const EdgeInsets.symmetric(vertical: SizeManager.large * 2),
           child: Text(
             item["text"],
             style: isDark
@@ -108,6 +109,62 @@ class Component {
               ),
             );
           },
+        );
+      case "map-list":
+        return Padding(
+          padding: const EdgeInsets.only(
+            top: SizeManager.medium,
+            bottom: SizeManager.large * 3,
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isDark
+                  ? const Color.fromARGB(255, 7, 7, 7)
+                  : const Color.fromARGB(255, 249, 249, 249),
+              borderRadius: BorderRadius.circular(SizeManager.small),
+              boxShadow: [
+                BoxShadow(
+                  color: isDark
+                      ? const Color.fromARGB(255, 5, 5, 5).withOpacity(0.25)
+                      : const Color.fromARGB(
+                          255,
+                          180,
+                          180,
+                          180,
+                        ).withOpacity(0.25),
+                  blurRadius: 10, // how soft the edge is
+                  spreadRadius: 0, // how far it grows before blurring
+                  offset: const Offset(
+                    0,
+                    SizeManager.tiny,
+                  ), // x, y — shift the shadow
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(SizeManager.small),
+              child: Wrap(
+                spacing: SizeManager.medium, // horizontal gap between items
+                runSpacing: SizeManager.medium, // vertical gap between rows
+                alignment: WrapAlignment.center,
+                children: [
+                  for (Map stackItem in item["stack"])
+                    Column(
+                      children: [
+                        SizedBox(
+                          width: SizeManager.stackTileSide,
+                          height: SizeManager.stackTileSide,
+                          child: SvgPicture.asset(
+                            stackItem["icon"],
+                            semanticsLabel: stackItem["name"],
+                          ),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+          ),
         );
       default:
         return const SizedBox.shrink(); // required fallback
