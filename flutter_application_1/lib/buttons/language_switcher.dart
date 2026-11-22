@@ -31,8 +31,8 @@ class LanguageSwitcher extends ConsumerWidget {
         child: Center(
           child: Text(
             isCompact
-                ? (isEnglishMode ? 'EN' : 'فا')
-                : (isEnglishMode ? 'English' : 'فارسی'),
+                ? (isEnglishMode ? 'EN' : 'FA')
+                : (isEnglishMode ? 'English' : 'Persian'),
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
