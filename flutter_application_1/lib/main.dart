@@ -21,8 +21,17 @@ class MainApp extends ConsumerWidget {
       builder: (context, constraints) {
         return MaterialApp(
           theme: isDark
-              ? ThemeData(scaffoldBackgroundColor: Colors.black)
-              : ThemeData(scaffoldBackgroundColor: Colors.white),
+              ? ThemeData(
+                  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 6, 10),
+                )
+              : ThemeData(
+                  scaffoldBackgroundColor: const Color.fromARGB(
+                    255,
+                    245,
+                    245,
+                    245,
+                  ),
+                ),
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.only(

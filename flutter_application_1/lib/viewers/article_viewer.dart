@@ -114,18 +114,18 @@ class Component {
         return Padding(
           padding: const EdgeInsets.only(
             top: SizeManager.medium,
-            bottom: SizeManager.large * 3,
+            bottom: SizeManager.large * 2.5,
           ),
           child: Container(
             decoration: BoxDecoration(
               color: isDark
-                  ? const Color.fromARGB(255, 7, 7, 7)
+                  ? const Color.fromARGB(255, 0, 8, 14)
                   : const Color.fromARGB(255, 249, 249, 249),
               borderRadius: BorderRadius.circular(SizeManager.small),
               boxShadow: [
                 BoxShadow(
                   color: isDark
-                      ? const Color.fromARGB(255, 5, 5, 5).withOpacity(0.25)
+                      ? const Color.fromARGB(255, 0, 5, 9)
                       : const Color.fromARGB(
                           255,
                           180,
