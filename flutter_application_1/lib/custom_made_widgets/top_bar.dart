@@ -76,7 +76,9 @@ class TopBarContainer extends ConsumerWidget {
           height: SizeManager.topBarHeight,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: isDark ? ColorManager.darkButtonBackground : Colors.grey,
+              color: isDark
+                  ? ColorManager.darkButtonBackground
+                  : ColorManager.lightButtonBackground,
               borderRadius: const BorderRadius.all(Radius.circular(63)),
             ),
             child: Row(

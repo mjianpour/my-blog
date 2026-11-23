@@ -23,7 +23,7 @@ class _ResumePageState extends State<ResumePage> {
             padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: horizontalPadding * 2.1,
+                horizontal: horizontalPadding * 1.2,
               ),
               child: const ArticleViewer(),
             ),

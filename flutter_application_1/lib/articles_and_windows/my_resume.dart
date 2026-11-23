@@ -15,18 +15,18 @@ final List<Map> myResumeArticle = [
         "Physics taught me how to break down complex problems into smaller parts, and software showed me how to bring those solutions into the real world. Currently, my main focus is on my studies, but I am also looking for a remote role as a Flutter developer—a place where I can rely on an \"AI-assisted workflow\" to get things done faster and cleaner.",
     "type": "Paragraph",
   },
-  {"path": "assets/students.png", "type": "Image"},
-  {
-    "text":
-        "You standing in front of a whiteboard filled with physics equations.",
-    "type": "Caption",
-  },
-  {"path": "assets/students.png", "type": "Image"},
-  {
-    "text":
-        "Sitting on a chair, holding a notebook, with a calm look toward the camera.",
-    "type": "Caption",
-  },
+  // {"path": "assets/students.png", "type": "Image"},
+  // {
+  //   "text":
+  //       "You standing in front of a whiteboard filled with physics equations.",
+  //   "type": "Caption",
+  // },
+  // {"path": "assets/students.png", "type": "Image"},
+  // {
+  //   "text":
+  //       "Sitting on a chair, holding a notebook, with a calm look toward the camera.",
+  //   "type": "Caption",
+  // },
   {"path": "assets/students.png", "type": "Image"},
   {
     "text":

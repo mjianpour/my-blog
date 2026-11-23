@@ -61,12 +61,22 @@ class Component {
           ),
         );
       case "Image":
-        return Padding(
-          padding: const EdgeInsets.only(top: SizeManager.large),
-          child: ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(SizeManager.small),
-            child: Image.asset(item["path"]),
-          ),
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final imageWidth = (constraints.maxWidth * 0.8).clamp(200.0, 500.0);
+            return Padding(
+              padding: const EdgeInsets.only(top: SizeManager.large),
+              child: SizedBox(
+                width: imageWidth,
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(
+                    SizeManager.small,
+                  ),
+                  child: Image.asset(item["path"]),
+                ),
+              ),
+            );
+          },
         );
       case "Caption":
         return Padding(
