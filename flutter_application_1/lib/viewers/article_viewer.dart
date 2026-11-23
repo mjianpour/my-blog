@@ -121,7 +121,7 @@ class Component {
               color: isDark
                   ? const Color.fromARGB(255, 0, 8, 14)
                   : const Color.fromARGB(255, 249, 249, 249),
-              borderRadius: BorderRadius.circular(SizeManager.small),
+              borderRadius: BorderRadius.circular(SizeManager.large * 2),
               boxShadow: [
                 BoxShadow(
                   color: isDark

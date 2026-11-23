@@ -33,67 +33,61 @@ class MainApp extends ConsumerWidget {
                   ),
                 ),
           home: Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.only(
-                top: SizeManager.globalVerticalPadding,
-              ),
-              child: Stack(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: SizeManager.medium,
-                        ),
-                        child: TopBar(),
+            body: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(child: SingleChildScrollView(child: ResumePage())),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: SizeManager.medium,
+                        right: SizeManager.medium,
+                        top: SizeManager.globalVerticalPadding,
                       ),
-                      Expanded(
-                        child: SingleChildScrollView(child: ResumePage()),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Expanded(child: Container(height: double.infinity)),
-                      constraints.maxWidth < SizeManager.smallScreenWidth
-                          ? Row(
-                              children: [
-                                Expanded(
-                                  child: Container(width: double.infinity),
+                      child: TopBar(),
+                    ),
+                    Expanded(child: Container(height: double.infinity)),
+                    constraints.maxWidth < SizeManager.smallScreenWidth
+                        ? Row(
+                            children: [
+                              Expanded(
+                                child: Container(width: double.infinity),
+                              ),
+                              LanguageSwitcher(
+                                languageSwitcherWidth: SizeManager.topBarHeight,
+                              ),
+                              SizedBox(width: SizeManager.small),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: SizeManager.globalVerticalPadding,
+                                  right: SizeManager.globalVerticalPadding,
+                                  bottom: SizeManager.globalVerticalPadding,
                                 ),
-                                LanguageSwitcher(
-                                  languageSwitcherWidth:
-                                      SizeManager.topBarHeight,
+                                child: DarkModeSwitch(),
+                              ),
+                            ],
+                          )
+                        : Row(
+                            children: [
+                              Expanded(
+                                child: Container(width: double.infinity),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(
+                                  SizeManager.globalVerticalPadding * 1.5,
                                 ),
-                                SizedBox(width: SizeManager.small),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: SizeManager.globalVerticalPadding,
-                                    right: SizeManager.globalVerticalPadding,
-                                    bottom: SizeManager.globalVerticalPadding,
-                                  ),
-                                  child: DarkModeSwitch(),
-                                ),
-                              ],
-                            )
-                          : Row(
-                              children: [
-                                Expanded(
-                                  child: Container(width: double.infinity),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(
-                                    SizeManager.globalVerticalPadding * 1.5,
-                                  ),
-                                  child: const DarkModeSwitch(),
-                                ),
-                              ],
-                            ),
-                    ],
-                  ),
-                ],
-              ),
+                                child: const DarkModeSwitch(),
+                              ),
+                            ],
+                          ),
+                  ],
+                ),
+              ],
             ),
           ),
         );
