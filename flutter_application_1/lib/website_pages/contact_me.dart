@@ -10,6 +10,6 @@ class ContactMe extends StatefulWidget {
 class _ContactMeState extends State<ContactMe> {
   @override
   Widget build(BuildContext context) {
-    return const Text("This is Contact Me page.");
+    return Center(child: const Text("This is Contact Me page."));
   }
 }

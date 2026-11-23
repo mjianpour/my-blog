@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/color_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_application_1/providers/theme_provider.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
@@ -17,10 +18,15 @@ class DarkModeSwitch extends ConsumerWidget {
       child: Container(
         width: SizeManager.topBarHeight,
         height: SizeManager.topBarHeight,
-        decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isDark
+              ? ColorManager.darkButtonBackground
+              : ColorManager.lightButtonBackground,
+        ),
         child: Center(
           child: Icon(
-            isDark ? Icons.nightlight_round : Icons.light_mode,
+            isDark ? Icons.light_mode : Icons.nightlight_round,
             color: Colors.white,
           ),
         ),

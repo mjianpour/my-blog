@@ -104,8 +104,14 @@ class Component {
             return Padding(
               padding: EdgeInsets.only(top: SizeManager.large * 5),
               child: CircleAvatar(
-                radius: imageProfileRadius,
-                backgroundImage: AssetImage(item["path"]),
+                radius: imageProfileRadius + SizeManager.borderWidth,
+                backgroundColor: isDark
+                    ? const Color.fromARGB(255, 233, 233, 233)
+                    : Colors.black26,
+                child: CircleAvatar(
+                  radius: imageProfileRadius,
+                  backgroundImage: AssetImage(item["path"]),
+                ),
               ),
             );
           },

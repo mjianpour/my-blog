@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/buttons/language_switcher.dart';
+import 'package:flutter_application_1/providers/tab_provider.dart';
+import 'package:flutter_application_1/providers/theme_provider.dart';
+import 'package:flutter_application_1/src/color_manager.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
+import 'package:flutter_application_1/src/style_manager.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({super.key});
@@ -36,7 +41,7 @@ class TopBar extends StatelessWidget {
   }
 }
 
-class TopBarContainer extends StatelessWidget {
+class TopBarContainer extends ConsumerWidget {
   const TopBarContainer({
     super.key,
     required this.width,
@@ -49,7 +54,8 @@ class TopBarContainer extends StatelessWidget {
   final bool isCompact;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(isDarkMode);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -69,9 +75,9 @@ class TopBarContainer extends StatelessWidget {
           width: width,
           height: SizeManager.topBarHeight,
           child: DecoratedBox(
-            decoration: const BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.all(Radius.circular(63)),
+            decoration: BoxDecoration(
+              color: isDark ? ColorManager.darkButtonBackground : Colors.grey,
+              borderRadius: const BorderRadius.all(Radius.circular(63)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,46 +85,105 @@ class TopBarContainer extends StatelessWidget {
                 // Item 1: Resume (PDF)
                 GestureDetector(
                   onTap: () {
-                    // Something else happens.
+                    ref.read(tabIndex.notifier).state = 0;
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.picture_as_pdf_rounded),
+                      Icon(
+                        Icons.picture_as_pdf_rounded,
+                        color: isDark
+                            ? Color.fromARGB(255, 248, 248, 248)
+                            : Colors.black,
+                      ),
                       SizedBox(width: SizeManager.small),
-                      if (!isCompact) const Text("Resume"),
+                      if (!isCompact)
+                        Text(
+                          "Resume",
+                          style: isDark
+                              ? StyleManager.topBarTabDark
+                              : StyleManager.topBarTabLight,
+                        ),
                     ],
                   ),
                 ),
 
                 // Item 2: Notes
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.note),
-                    SizedBox(width: SizeManager.small),
-                    if (!isCompact) const Text("Notes"),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    ref.read(tabIndex.notifier).state = 1;
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.note,
+                        color: isDark
+                            ? Color.fromARGB(255, 248, 248, 248)
+                            : Colors.black,
+                      ),
+                      SizedBox(width: SizeManager.small),
+                      if (!isCompact)
+                        Text(
+                          "Notes",
+                          style: isDark
+                              ? StyleManager.topBarTabDark
+                              : StyleManager.topBarTabLight,
+                        ),
+                    ],
+                  ),
                 ),
 
                 // Item 3: Projects
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.code),
-                    SizedBox(width: SizeManager.small),
-                    if (!isCompact) const Text("Projects"),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    ref.read(tabIndex.notifier).state = 2;
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.code,
+                        color: isDark
+                            ? Color.fromARGB(255, 248, 248, 248)
+                            : Colors.black,
+                      ),
+                      SizedBox(width: SizeManager.small),
+                      if (!isCompact)
+                        Text(
+                          "Projects",
+                          style: isDark
+                              ? StyleManager.topBarTabDark
+                              : StyleManager.topBarTabLight,
+                        ),
+                    ],
+                  ),
                 ),
 
                 // Item 4: Contact (was duplicated "My Resume" — changed)
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.email),
-                    SizedBox(width: SizeManager.small),
-                    if (!isCompact) const Text("Contact Me"),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    ref.read(tabIndex.notifier).state = 3;
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.email,
+                        color: isDark
+                            ? Color.fromARGB(255, 248, 248, 248)
+                            : Colors.black,
+                      ),
+                      SizedBox(width: SizeManager.small),
+                      if (!isCompact)
+                        Text(
+                          "Contact Me",
+                          style: isDark
+                              ? StyleManager.topBarTabDark
+                              : StyleManager.topBarTabLight,
+                        ),
+                    ],
+                  ),
                 ),
               ],
             ),

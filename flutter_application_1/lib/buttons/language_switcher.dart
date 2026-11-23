@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/language_provider.dart';
+import 'package:flutter_application_1/providers/theme_provider.dart';
+import 'package:flutter_application_1/src/color_manager.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
+import 'package:flutter_application_1/src/style_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LanguageSwitcher extends ConsumerWidget {
@@ -11,6 +14,7 @@ class LanguageSwitcher extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isEnglishMode = ref.watch(isEnglish);
+    final isDark = ref.watch(isDarkMode);
 
     // Compact when the caller passes a single topBarHeight-sized pill.
     final isCompact = languageSwitcherWidth <= SizeManager.topBarHeight * 1.1;
@@ -23,7 +27,9 @@ class LanguageSwitcher extends ConsumerWidget {
         width: languageSwitcherWidth,
         height: SizeManager.topBarHeight,
         decoration: BoxDecoration(
-          color: Colors.grey,
+          color: isDark
+              ? ColorManager.darkButtonBackground
+              : ColorManager.lightButtonBackground,
           borderRadius: BorderRadius.all(
             Radius.circular(SizeManager.topBarHeight / 2),
           ),
@@ -33,10 +39,9 @@ class LanguageSwitcher extends ConsumerWidget {
             isCompact
                 ? (isEnglishMode ? 'EN' : 'FA')
                 : (isEnglishMode ? 'English' : 'Persian'),
-            style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+            style: isDark
+                ? StyleManager.topBarTabDark
+                : StyleManager.topBarTabLight,
           ),
         ),
       ),

@@ -35,4 +35,10 @@ class StyleManager {
     fontWeight: FontWeight(600),
     color: Colors.black,
   );
+
+  static const topBarTabLight = TextStyle(fontSize: 15, color: Colors.black);
+  static const topBarTabDark = TextStyle(
+    fontSize: 15,
+    color: Color.fromARGB(255, 248, 248, 248),
+  );
 }

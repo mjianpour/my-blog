@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/buttons/extended_dark_switch.dart';
 import 'package:flutter_application_1/buttons/language_switcher.dart';
 import 'package:flutter_application_1/custom_made_widgets/top_bar.dart';
+import 'package:flutter_application_1/providers/tab_provider.dart';
 import 'package:flutter_application_1/src/size_manager.dart';
 import 'package:flutter_application_1/website_pages/contact_me.dart';
 import 'package:flutter_application_1/website_pages/notes.dart';
@@ -22,7 +23,13 @@ class MainApp extends ConsumerStatefulWidget {
 }
 
 class _MainAppState extends ConsumerState<MainApp> {
-  final PageController _pageController = PageController();
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: ref.read(tabIndex));
+  }
 
   @override
   void dispose() {
@@ -30,8 +37,19 @@ class _MainAppState extends ConsumerState<MainApp> {
     super.dispose();
   }
 
+  void _goToPage(int target) {
+    if (!_pageController.hasClients) return;
+    if (_pageController.page?.round() == target) return;
+    _pageController.jumpToPage(target);
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Provider -> PageView (instant jump, no sliding)
+    ref.listen<int>(tabIndex, (previous, next) {
+      _goToPage(next);
+    });
+
     final isDark = ref.watch(isDarkMode);
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -58,6 +76,10 @@ class _MainAppState extends ConsumerState<MainApp> {
                       child: PageView(
                         controller: _pageController,
                         scrollDirection: Axis.horizontal,
+                        // PageView -> Provider (user swipes)
+                        onPageChanged: (index) {
+                          ref.read(tabIndex.notifier).state = index;
+                        },
                         children: [
                           SingleChildScrollView(child: ResumePage()),
                           Notes(),
