@@ -77,13 +77,18 @@ class TopBarContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // Item 1: Resume (PDF)
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.picture_as_pdf_rounded),
-                    SizedBox(width: SizeManager.small),
-                    if (!isCompact) const Text("Resume"),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    // Something else happens.
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.picture_as_pdf_rounded),
+                      SizedBox(width: SizeManager.small),
+                      if (!isCompact) const Text("Resume"),
+                    ],
+                  ),
                 ),
 
                 // Item 2: Notes
